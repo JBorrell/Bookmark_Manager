@@ -9,9 +9,9 @@
 <ul id="links">
   <% @links.each do |link| %>
   <li>
-    Title: <%= link.title %>
-    URL: <%= link.url %>
-    tags: <%= link.tags.map(&:name).join(", ") %>
+    Title: <%= link.title %><br>
+    URL: <a href="<%= link.url %>"><%= link.url %></a><br>
+    tags: <%= link.tags.map(&:name).join(", ") %><br><br>
   </li>
   <% end %>
 </ul>
