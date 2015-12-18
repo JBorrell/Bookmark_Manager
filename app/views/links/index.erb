@@ -2,10 +2,6 @@
 
 <%= @message %>
 
-<form action='/links/new' method='get'>
-  <input type='submit' value='Add link'>
-</form>
-
 <ul id="links">
   <% @links.each do |link| %>
   <li>
@@ -15,3 +11,11 @@
   </li>
   <% end %>
 </ul>
+
+<form action='/links/new' method='get'>
+  <input type='submit' value='Add link'>
+</form>
+
+<form action='/register' method='get'>
+  <input type='submit' value='Register'>
+</form>
