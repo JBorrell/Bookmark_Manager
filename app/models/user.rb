@@ -16,4 +16,5 @@ class User
     :message => "Email address already registered"
 
   has n, :links, through: Resource
+  
 end

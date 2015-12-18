@@ -12,8 +12,20 @@ class BookmarkManager < Sinatra::Base
   set :public_folder, 'public'
 
   get '/' do
-    redirect '/links'
+    erb(:sign_in)
   end
+
+  post '/sign_in' do
+    @user = User.first(email: params[:email])
+    redirect '/' unless @user
+      if BCrypt::Password.new(@user.password) == params[:password]
+        session[:user_id] = @user.id
+        redirect '/links'
+      else
+        redirect '/'
+      end
+  end
+
   get '/links' do
     @message = session.delete(:message)
     @links = Link.all
