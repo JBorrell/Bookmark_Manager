@@ -61,4 +61,12 @@ feature 'when a user creates a new account' do
     fill_in_register_form(email: 'john')
     expect { click_button('Register') }.not_to change { User.count }
   end
+
+  scenario 'if a user enters an already registered email, doesn\'t save user' do
+    fill_in_register_form
+    click_button('Register')
+    fill_in_register_form
+    expect { click_button('Register') }.not_to change { User.count }
+    expect(page).to have_content('Email address already registered')
+  end
 end
