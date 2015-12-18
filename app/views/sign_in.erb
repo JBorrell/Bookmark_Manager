@@ -3,10 +3,16 @@
 <head>
 </head>
 <body>
+  <% if flash[:goodbye] %>
+  <h1>  <%= flash[:goodbye] %> </h1>
+  <% end %>
+
   <% unless current_user %>
   <% if flash[:errors] %>
     <%= flash[:errors] %>
   <% end %>
+
+
   <h1>Sign In</h1>
   <form action='/sign_in' method='post'>
     <input type='text' name='email' placeholder='Email Adress'>
