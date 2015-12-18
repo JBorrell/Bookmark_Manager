@@ -5,7 +5,7 @@ class User
 
   property :id,       Serial
   property :name,     String
-  property :email,    String
+  property :email,    String, :required => true, :format => :email_address
   property :password, BCryptHash, length: 255
   attr_accessor :password_confirmation
 

@@ -11,6 +11,9 @@ class BookmarkManager < Sinatra::Base
   set :session_secret, 'super secret'
   set :public_folder, 'public'
 
+  get '/' do
+    redirect '/links'
+  end
   get '/links' do
     @message = session.delete(:message)
     @links = Link.all
