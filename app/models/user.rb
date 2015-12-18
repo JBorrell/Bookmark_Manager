@@ -16,5 +16,14 @@ class User
     :message => "Email address already registered"
 
   has n, :links, through: Resource
-  
+
+  def self.authenticate(email, password)
+    user = first(email: email)
+    if user && BCrypt::Password.new(user.password) == password
+      user
+    else
+      nil
+    end
+  end
+
 end

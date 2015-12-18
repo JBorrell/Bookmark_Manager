@@ -16,14 +16,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/sign_in' do
-    @user = User.first(email: params[:email])
-    redirect '/' unless @user
-      if BCrypt::Password.new(@user.password) == params[:password]
-        session[:user_id] = @user.id
-        redirect '/links'
-      else
-        redirect '/'
-      end
+    @user = User.authenticate(params[:email], params[:password])
+    if @user
+      session[:user_id] = @user.id
+      redirect '/links'
+    else
+      flash.now[:errors] = 'Email address or Password incorrect'
+      erb(:sign_in)
+    end
   end
 
   get '/links' do
